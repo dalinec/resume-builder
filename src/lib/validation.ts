@@ -8,3 +8,27 @@ export const generalInfoSchema = z.object({
 });
 
 export type GenerelInfoValues = z.infer<typeof generalInfoSchema>; //creates a type from the z.object defined earlier
+
+export const personalInfoSchema = z.object({
+  //custom validation rules
+  photo: z
+    .custom<File | undefined>()
+    .refine(
+      (file) =>
+        !file || (file instanceof File && file.type.startsWith("image/")),
+      "Must be an image file!",
+    )
+    .refine(
+      (file) => !file || file.size <= 1024 * 1024 * 4,
+      "File must be less then 4mb",
+    ),
+  firstName: optionalString,
+  lastName: optionalString,
+  jobTitle: optionalString,
+  city: optionalString,
+  country: optionalString,
+  phone: optionalString,
+  email: optionalString,
+});
+
+export type PersonalInfoValues = z.infer<typeof personalInfoSchema>;
