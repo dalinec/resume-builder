@@ -4,10 +4,12 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { personalInfoSchema, PersonalInfoValues } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export default function PersonalInfoForm() {
@@ -24,6 +26,17 @@ export default function PersonalInfoForm() {
       email: "",
     },
   });
+
+  //used for watching the form to trigger the error msgs correctly
+  useEffect(() => {
+    const { unsubscribe } = form.watch(async () => {
+      const isValid = await form.trigger();
+      if (!isValid) return;
+      //Update resume data
+    });
+    return unsubscribe;
+  }, [form]);
+
   return (
     <div className="mx-auto max-w-xl space-y-6">
       <div className="space-x-1.5 text-center">
@@ -49,6 +62,7 @@ export default function PersonalInfoForm() {
                     }}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           />
