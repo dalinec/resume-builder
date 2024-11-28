@@ -2,10 +2,24 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import GeneralInfoForm from "./forms/GeneralInfoForm";
-import PersonalInfoForm from "./forms/PersonalInfoForm";
+import { useSearchParams } from "next/navigation";
+import { steps } from "./steps";
+import Breadcrumbs from "./Breadcrumbs";
 
 export default function ResumeEditor() {
+  const searchParams = useSearchParams();
+  const currentStep = searchParams.get("step") || steps[0].key;
+
+  function setStep(key: string) {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set("step", key);
+    window.history.pushState(null, "", `?${newSearchParams.toString()}`);
+  }
+
+  const FormComponent = steps.find(
+    (step) => step.key === currentStep,
+  )?.component;
+
   return (
     <div className="flex grow flex-col">
       {/* header */}
@@ -19,11 +33,9 @@ export default function ResumeEditor() {
       {/* main */}
       <main className="relative grow">
         <div className="absolute bottom-0 top-0 flex w-full">
-          {/* <div className="w-full p-3 md:w-1/2">
-            <GeneralInfoForm />
-          </div> */}
-          <div className="w-full overflow-y-auto p-3 md:w-1/2">
-            <PersonalInfoForm />
+          <div className="w-full space-y-6 overflow-y-auto p-3 md:w-1/2">
+            <Breadcrumbs currentStep={currentStep} setCurrentStep={setStep} />
+            {FormComponent && <FormComponent />}
           </div>
           {/* divider */}
           <div className="grow md:border-r" />
