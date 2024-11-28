@@ -56,6 +56,7 @@ export default function PersonalInfoForm() {
                     {...fieldValues}
                     type="file"
                     accept="image/*"
+                    className="hover:cursor-pointer"
                     onChange={(e) => {
                       const file = e.target.files?.[0];
                       fieldValues.onChange(file);
