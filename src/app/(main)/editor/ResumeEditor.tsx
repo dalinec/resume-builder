@@ -47,7 +47,9 @@ export default function ResumeEditor() {
           </div>
           {/* divider */}
           <div className="grow md:border-r" />
-          <div className="hidden w-1/2 md:flex">right</div>
+          <div className="hidden w-1/2 md:flex">
+            <pre>{JSON.stringify(resumeData, null, 2)}</pre>
+          </div>
         </div>
       </main>
       {/* footer */}
