@@ -32,3 +32,14 @@ export const personalInfoSchema = z.object({
 });
 
 export type PersonalInfoValues = z.infer<typeof personalInfoSchema>;
+
+export const resumeSchema = z.object({
+  ...generalInfoSchema.shape,
+  ...personalInfoSchema.shape,
+});
+
+export type ResumeValues = Omit<z.infer<typeof resumeSchema>, "photo"> & {
+  //we omit the original photo type and redeclare it with the new Type, resumeVals will be later send in bulk to the bkend
+  id?: string;
+  photo?: File | string | null;
+};
