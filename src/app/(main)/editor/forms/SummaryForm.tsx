@@ -23,6 +23,7 @@ export default function SummaryForm({
       summary: resumeData.summary || "",
     },
   });
+
   useEffect(() => {
     const { unsubscribe } = form.watch(async (values) => {
       const isValid = await form.trigger();
