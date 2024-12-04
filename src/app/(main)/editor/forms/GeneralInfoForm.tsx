@@ -26,7 +26,7 @@ export default function GeneralInfoForm({
       description: resumeData.description || "",
     },
   });
-  
+
   useEffect(() => {
     const { unsubscribe } = form.watch(async (values) => {
       const isValid = await form.trigger();
@@ -35,6 +35,7 @@ export default function GeneralInfoForm({
     });
     return unsubscribe;
   }, [form, resumeData, setResumeData]);
+
   return (
     <div className="mx-auto max-w-xl space-x-6">
       <div className="space-y-1.5 text-center">
