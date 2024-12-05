@@ -250,7 +250,7 @@ function EducationSection({ resumeData }: ResumeSectionProps) {
 }
 
 function SkillsSection({ resumeData }: ResumeSectionProps) {
-  const { skills, colorHex } = resumeData;
+  const { skills, colorHex, borderStyle } = resumeData;
   if (!skills?.length) return null;
 
   return (
@@ -276,6 +276,12 @@ function SkillsSection({ resumeData }: ResumeSectionProps) {
               key={index}
               className="rounded-md bg-black text-white hover:bg-black"
               style={{
+                borderRadius:
+                  borderStyle === BorderStyles.SQUARE
+                    ? "0px"
+                    : borderStyle === BorderStyles.CIRCLE
+                      ? "9999px"
+                      : "8px",
                 backgroundColor: colorHex,
               }}
             >
