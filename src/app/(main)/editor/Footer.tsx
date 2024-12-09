@@ -61,7 +61,7 @@ export default function Footer({
           </Button>
           <p
             className={cn(
-              "text-muted-foreground opacity-0",
+              "text-muted-foreground opacity-0 transition-opacity",
               isSaving && "opacity-100",
             )}
           >
