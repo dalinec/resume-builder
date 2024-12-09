@@ -203,7 +203,7 @@ function EducationSection({ resumeData }: ResumeSectionProps) {
   const { educations, colorHex } = resumeData;
 
   const educationsNotEmpty = educations?.filter(
-    (edu) => Object.values(edu).filter(Boolean).length > 0, //the if the exp is empty the Boolean is false
+    (edu) => Object.values(edu).filter(Boolean).length > 0, //the if the exp is empty the Boolean is false, returns only truthy values
   );
 
   if (!educationsNotEmpty?.length) return null;
