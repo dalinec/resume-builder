@@ -104,3 +104,4 @@ export default function useAutoSaveResume(resumeData: ResumeValues) {
       JSON.stringify(resumeData) !== JSON.stringify(lastSavedData),
   };
 }
+
