@@ -1,14 +1,19 @@
+"use client";
+
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { Dialog, DialogContent, DialogHeader } from "../ui/dialog";
 import { Check } from "lucide-react";
 import { Button } from "../ui/button";
+import usePremiumModal from "@/hooks/usePremiumModal";
 
 const premiumFeatures = ["More tools", "Up to 3 resumes"];
 const premiumPlusFeatures = ["Infinite resumes", "Design customizations"];
 
 export default function PremiumModal() {
+  const { open, setOpen } = usePremiumModal();
+
   return (
-    <Dialog open>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
           <DialogTitle>Resume Builder Premium</DialogTitle>
