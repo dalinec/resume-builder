@@ -127,15 +127,14 @@ interface DeleteConfirmationDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
-
 function DeleteConfirmationDialog({
-  onOpenChange,
-  open,
   resumeId,
+  open,
+  onOpenChange,
 }: DeleteConfirmationDialogProps) {
   const { toast } = useToast();
 
-  const [isPending, startTransition] = useTransition(); //when we call a server action from a client comp we should use this, it also triggers the revalidatePath
+  const [isPending, startTransition] = useTransition();
 
   async function handleDelete() {
     startTransition(async () => {
@@ -170,7 +169,7 @@ function DeleteConfirmationDialog({
           >
             Delete
           </LoadingButton>
-          <Button variant={"secondary"} onClick={() => onOpenChange(false)}>
+          <Button variant="secondary" onClick={() => onOpenChange(false)}>
             Cancel
           </Button>
         </DialogFooter>
