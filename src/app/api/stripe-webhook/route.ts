@@ -20,14 +20,14 @@ export async function POST(req: NextRequest) {
       env.STRIPE_WEBHOOK_SECRET,
     );
 
-    console.log(`Received event: ${event.type},`, event.data.object);
+    console.log(`Received event: ${event.type}`, event.data.object);
 
     switch (event.type) {
       case "checkout.session.completed":
         await handleSessionCompleted(event.data.object);
         break;
       case "customer.subscription.created":
-      case "customer.discount.updated":
+      case "customer.subscription.updated":
         await handleSubscriptionCreatedOrUpdated(event.data.object.id);
         break;
       case "customer.subscription.deleted":
